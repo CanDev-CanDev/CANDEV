@@ -41,7 +41,7 @@ def create_app(test_config=None):
         conn = db.create_connection(db.DATABASE)
         res = db.select_all_tasks(conn, dept)
         conn.close()
-        return '%s' % ', '.join(map(str, res))
+        return json.dumps({'item': res})
 
     @app.route('/getNearest/userloc=<userloc>&dept=<dept>', methods=['GET'])
     def getNeartest(userloc, dept):
@@ -51,7 +51,7 @@ def create_app(test_config=None):
         user = googlemap.getGeolocation(userloc)
         alloc = list()
         for t in res:
-            alloc.append((googlemap.getGeolocation(t[1]), res.index(t)))
+            alloc.append((googlemap.getGeolocation(t['organization_addr']), res.index(t)))
         closet = list()
         for i in alloc:
             x = user['lat'] - i[0]['lat']
@@ -63,7 +63,7 @@ def create_app(test_config=None):
         final = list()
         for item in closet:
             final.append(res[item[1]])
-        print('done')
-        return '%s' % ', '.join(map(str, final[:5]))
+        final=final[:5]
+        return json.dumps({'item': final})
 
     return app

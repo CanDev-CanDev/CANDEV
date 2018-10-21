@@ -32,7 +32,11 @@ def select_all_tasks(conn, dept):
     cur = conn.cursor()
     cur.execute('SELECT * FROM ' + dept)
     rows = cur.fetchall()
-    return rows
+    item = []
+    for row in rows:
+        item.append({'id': row[0], 'organization_addr': row[1], 'tel': row[2], 'email': row[3], 'open_hours': row[4],
+                     'web_links': row[5], 'lable': row[6]})
+    return item
 
 
 def get_db():
