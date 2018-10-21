@@ -4,7 +4,7 @@ import click
 from flask import current_app, g
 from flask.cli import with_appcontext
 
-DATABASE = "/Users/yanzhang/Desktop/candev/instance/flaskr.db"
+DATABASE = "/Users/yanzhang/Desktop/candev/instance/flaskr.sqlite"
 
 
 def create_connection(db_file):
@@ -32,18 +32,19 @@ def select_all_tasks(conn, dept):
     cur = conn.cursor()
     cur.execute('SELECT * FROM ' + dept)
     rows = cur.fetchall()
+    column = cur.description
     item = []
     for row in rows:
-        item.append({'id': row[0], 'organization_addr': row[1], 'tel': row[2], 'email': row[3], 'open_hours': row[4],
+            item.append({column[0][0]: row[0], column[1][0]: row[1], column[2][0]: row[2], column[3][0]: row[3], column[4][0]: row[4],
                      'web_links': row[5], 'lable': row[6]})
     return item
 
 
 def get_db():
-    if 'db' not in g:
-        g.db = sqlite3.connect(current_app.config['DATABASE'], detect_types=sqlite3.PARSE_DECLTYPES)
-        g.db.row_factory = sqlite3.Row
-    return g.db
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
 
 
 def close_db(e=None):
@@ -54,10 +55,9 @@ def close_db(e=None):
 
 
 def init_db():
-    db = get_db()
-
+    db = create_connection(DATABASE)
     with current_app.open_resource('schema.sql') as f:
-        db.executescript(f.read().decode('utf8'))
+        db.executescript(f.read().decode())
 
 
 @click.command('init-db')

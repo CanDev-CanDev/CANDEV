@@ -41,7 +41,10 @@ def create_app(test_config=None):
         conn = db.create_connection(db.DATABASE)
         res = db.select_all_tasks(conn, dept)
         conn.close()
-        return json.dumps({'item': res})
+        status = 404
+        if len(res) != 0:
+            status = 200
+        return json.dumps({'status': status, 'addresses': res})
 
     @app.route('/getNearest/userloc=<userloc>&dept=<dept>', methods=['GET'])
     def getNeartest(userloc, dept):
@@ -63,7 +66,10 @@ def create_app(test_config=None):
         final = list()
         for item in closet:
             final.append(res[item[1]])
-        final=final[:5]
-        return json.dumps({'item': final})
+        final = final[:5]
+        status = 404
+        if len(res) != 0:
+            status = 200
+        return json.dumps({'status': status, 'addresses': final})
 
     return app
