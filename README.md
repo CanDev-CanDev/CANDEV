@@ -1,6 +1,7 @@
 # CANDEV
 
 var obj = JSON.parse(txt);
+
 document.getElementById("demo").innerHTML =obj.status
 
 ```
