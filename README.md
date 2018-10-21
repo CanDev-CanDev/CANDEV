@@ -1,5 +1,7 @@
 # CANDEV
 
+var obj = JSON.parse(txt);
+document.getElementById("demo").innerHTML =obj.status
 
 http://127.0.0.1:5000/getNearest/userloc=<string: location>&dept=<string: department>
 {

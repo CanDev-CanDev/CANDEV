@@ -32,13 +32,21 @@ def select_all_tasks(conn, dept):
     cur = conn.cursor()
     cur.execute('SELECT * FROM ' + dept)
     rows = cur.fetchall()
-    column = cur.description
+    # column = cur.description
     item = []
+
     for row in rows:
-            item.append({column[0][0]: row[0], column[1][0]: row[1], column[2][0]: row[2], column[3][0]: row[3], column[4][0]: row[4],
-                     'web_links': row[5], 'lable': row[6]})
+        # item.append({column[0][0]: row[0], column[1][0]: row[1], column[2][0]: row[2], column[3][0]: row[3], column[4][0]: row[4],
+        #          'web_links': row[5], 'lable': row[6]})
+        item.append(dict_factory(cur,row))
+
     return item
 
+def dict_factory(cursor, row):
+    d = {}
+    for idx,col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
 
 def get_db():
     db = getattr(g, '_database', None)
