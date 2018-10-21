@@ -1,9 +1,16 @@
 # CANDEV
 
 var obj = JSON.parse(txt);
+
 document.getElementById("demo").innerHTML =obj.status
 
+```
+get all specific department
+http://127.0.0.1:5000/getAll/dept=<string: department>
+get nearest specific department
 http://127.0.0.1:5000/getNearest/userloc=<string: location>&dept=<string: department>
+```
+```
 {
     "status": 200,
     "addresses": [
@@ -54,3 +61,4 @@ http://127.0.0.1:5000/getNearest/userloc=<string: location>&dept=<string: depart
         }
     ]
 }
+```
