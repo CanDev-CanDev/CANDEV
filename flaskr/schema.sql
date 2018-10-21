@@ -89,11 +89,8 @@ VALUES (5,
 
 
 INSERT INTO ServiceCanada(id,organization_addr,tel,email,open_hours,web_links,lable)
-VALUES (0,West Humber Service Canada Centre 	2291 Kipling Avenue Toronto Ontario 	Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures);
-
-organization_name	location	open_hours
-West Humber Service Canada Centre 	2291 Kipling Avenue Toronto Ontario 	Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures
-Gerrard Square Service Canada Centre 	 Gerrard Square Mall Floor 2	Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures
-College Street Service Canada Centre 	 559 College Street Suite 100 Toronto	Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures
-Lawrence Square Service Canada Centre 	 Lawrence Square Suite 103-105 700 Lawrence Avenue West Toronto	Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures
- Willowdale Service Canada Centre 	 Joseph Shepard Building Floor 1 4900 Yonge Street North York	Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures
+VALUES (0,'West Humber Service Canada Centre', 	'2291 Kipling Avenue Toronto Ontario', 'email@serviceCanada.ca','Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures','serviceCanata.ca','provincial'),
+(1,'Gerrard Square Service Canada Centre', 	'Gerrard Square Mall Floor 2', 'email@serviceCanada.ca','Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures','serviceCanata.ca','provincial'),
+(2,'College Street Service Canada Centre', 	'559 College Street Suite 100 Toronto', 'email@serviceCanada.ca','Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures','serviceCanata.ca','provincial'),
+(3,'Lawrence Square Service Canada Centre', 	'Lawrence Square Suite 103-105 700 Lawrence Avenue West Toronto	', 'email@serviceCanada.ca','Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures','serviceCanata.ca','provincial'),
+(4,'Willowdale Service Canada Centre', 	'Joseph Shepard Building Floor 1 4900 Yonge Street North York', 'email@serviceCanada.ca','Monday to Friday from 8:30 am to 4:00 pm Upcoming holiday closures','serviceCanata.ca','provincial');
