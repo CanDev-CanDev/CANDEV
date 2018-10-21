@@ -2,7 +2,7 @@ import json
 import os
 
 import numpy as np
-from flask import Flask, request
+from flask import Flask, request, Response
 
 from flaskr import db
 
@@ -44,7 +44,9 @@ def create_app(test_config=None):
         status = 404
         if len(res) != 0:
             status = 200
-        return json.dumps({'status': status, 'addresses': res})
+
+        json_response = json.dumps({'status': status, 'addresses': res})
+        return Response(json_response, mimetype='application/json', status=status)
 
     @app.route('/getNearest/userloc=<userloc>&dept=<dept>', methods=['GET'])
     def getNeartest(userloc, dept):
@@ -70,6 +72,7 @@ def create_app(test_config=None):
         status = 404
         if len(res) != 0:
             status = 200
-        return json.dumps({'status': status, 'addresses': final})
+        json_response = json.dumps({'status': status, 'addresses': final})
+        return Response(json_response, mimetype='application/json', status=status)
 
     return app

@@ -1,9 +1,10 @@
 # CANDEV
 
 
-http://127.0.0.1:5000/getNearest/userloc=190+Lees+Avenue,+Ottawa,+ON&dept=ServiceOntario
+http://127.0.0.1:5000/getNearest/userloc=<string: location>&dept=<string: department>
 {
-    "item": [
+    "status": 200,
+    "addresses": [
         {
             "id": 4,
             "organization_addr": "100 Steeles Ave W, Thornhill, ON L4J 7Y1",
